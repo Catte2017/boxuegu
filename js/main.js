@@ -2,7 +2,7 @@ define([], function () {
 
     // 这里配置模块的路径与依赖
     require.config({
-        baseUrl: '/',
+        baseUrl: '/',    //这里用的是绝对路径，斜杠开头的是绝对路径
         paths: {
 
             // 配置自己写的js模块别名
@@ -24,6 +24,9 @@ define([], function () {
             teacherList: 'js/teacher/teacher_list',
             userProfile: 'js/user/user_profile',
             userList: 'js/user/user_list',
+            common: 'js/common/common',
+            aside: 'js/common/aside',
+            header: 'js/common/header',
 
             // 配置第三方js模块别名
             template: 'lib/artTemplate/template-debug',
@@ -39,15 +42,25 @@ define([], function () {
             nprogress: 'lib/nprogress/nprogress',
         },
 
+        //用到的时候再来配置，不用一开始就配置好
         shim: {
-            //bootstrap是非define依赖于jquery  ，bootstrap中js依赖于jquery
+            //因为bootstrap不是define定义的模块，而bootstrap依赖于jquery  ，bootstrap中js依赖于jquery
             bootstrap: {
                 deps: ['jquery']
             }
         }
     });
 
-    // 这里根据页面的路径进行不同页面的区分进而加载不同的js
+
+    //  所有的页面，只要main.js加载完毕了，那么就优先加载进度条插件，显示进度条
+    require(['nprogress'], function (nprogress) {
+        nprogress.start();
+    })
+
+
+
+
+    // 这里根据页面的路径进行 不同页面的区分 进而加载不同的js
     var pathname = location.pathname;
 
     switch(pathname) {
