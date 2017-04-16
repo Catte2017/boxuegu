@@ -33,13 +33,14 @@ define([], function () {
             bootstrap: 'lib/bootstrap/js/bootstrap',
             datepicker: 'lib/bootstrap-datepicker/js/bootstrap-datepicker',
             ckeditor: 'lib/ckeditor/ckeditor',
-            ckeditorLand: 'lib/ckeditor/lang/zh-cn',
+            ckeditorLang: 'lib/ckeditor/lang/zh-cn',
             echarts: 'lib/echarts/echarts.min',
             jquery: 'lib/jquery/jquery.min',
             jqueryCookie: 'lib/jquery-cookie/jquery.cookie',
             jqueryForm: 'lib/jquery-form/jquery.form',
             jqueryRegion: 'lib/jquery-region/jquery.region',
             nprogress: 'lib/nprogress/nprogress',
+            uploadify:'lib/uploadify/jquery.uploadify'
         },
 
         //用到的时候再来配置，不用一开始就配置好
@@ -47,6 +48,10 @@ define([], function () {
             //因为bootstrap不是define定义的模块，而bootstrap依赖于jquery  ，bootstrap中js依赖于jquery
             bootstrap: {
                 deps: ['jquery']
+            },
+            uploadify:{
+                deps:['jquery'],
+
             }
         }
     });

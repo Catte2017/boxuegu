@@ -1,4 +1,5 @@
-define(['common','jquery','header','aside','nprogress'], function(undefined,$,undefined,undefined,nprogress) {
+define(['jquery','common','header','aside','nprogress'], function($,undefined,undefined,undefined,nprogress) {
+
 
 
 

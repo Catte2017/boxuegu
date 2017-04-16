@@ -38,8 +38,24 @@ define([], function () {
 
 //******************************法三：使用一个jquery插件***************************************
 define(['jquery','jqueryCookie'],function($,undefined){  //jqueryCookie源代码中已经定义过依赖模块了，那我们就不关心了，但是源码并没有return东西，所以这里回调形参是默认值undefined
-    if(!$.cookie('PHPSESSID')){
-        location.href='/html/home/login.html';
 
-    }
+    //登录验证
+    (function () {
+        if(!$.cookie('PHPSESSID')){
+            location.href='/html/home/login.html';
+
+        }
+    })();
+
+
+    //发送ajax请求时的loading效果
+    (function () {
+        $(document).on('ajaxStart', function () {
+            $('.overlay').show();
+        }).on('ajaxStop', function () {
+            $('.overlay').hide()
+        })
+    })();
+
+
 })

@@ -1,7 +1,14 @@
 define(['jquery','jqueryCookie','nprogress'], function ($,undefined,nprogress) {
 
-    //表单提交
+    //-----------------表单提交-------------------
     (function(){
+
+        if($.cookie('userinfo')){
+            var src=JSON.parse($.cookie('userinfo')).tc_avatar
+            $('.avatar img').attr('src',src)
+        }
+
+
 
 
         /*************************法一*************************/
@@ -36,14 +43,17 @@ define(['jquery','jqueryCookie','nprogress'], function ($,undefined,nprogress) {
                 url: '/v6/login',
                 data: userinfo,
                 success: function (data) {
-                    //console.log(data);
+                    console.log(data);
                     if (data.code == 200) {
+                        $.cookie('userinfo',JSON.stringify(data.result),{path:'/'})
+
                         location.href = '/'; //验证成功就跳转首页
-                    }
+                    };
+
                 },
                 error: function () {
                     //console.log(arguments); //请求错误后，jq包装了一个xhr对象给我们
-
+                    //查无此用户
                     alert(arguments[2]);
                 }
             })
@@ -56,7 +66,7 @@ define(['jquery','jqueryCookie','nprogress'], function ($,undefined,nprogress) {
     })();
 
 
-    //登录验证
+    //----------------登录验证---------------
     (function() {
         if($.cookie('PHPSESSID')){
             location.href='/';
@@ -66,6 +76,6 @@ define(['jquery','jqueryCookie','nprogress'], function ($,undefined,nprogress) {
 
 
 
-    // 页面所有代码执行完毕，进度条结束
+    //----------------页面所有代码执行完毕，进度条结束------------
     nprogress.done();
 });

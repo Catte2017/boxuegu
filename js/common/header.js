@@ -1,4 +1,5 @@
 define(['jquery'], function ($) {
+    //µÇ³ö
     $('#logout-btn').on('click', function () {
         $.ajax({
             type:'post',
